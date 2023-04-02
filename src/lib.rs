@@ -2,6 +2,10 @@ use std::collections::HashMap;
 
 pub type Factorization = HashMap<u32, u32>;
 
+pub fn get_one() -> Factorization {
+    return HashMap::new();
+}
+
 pub fn get_factorization(k: u32) -> Factorization {
     let mut fact = HashMap::new();
 
@@ -50,13 +54,11 @@ pub fn division(a: Factorization, b: Factorization) -> Factorization {
 pub fn get_number(a: Factorization) -> u128 {
     let mut result = 1u128;
     for i in a.keys() {
-        let k2 = i.pow(a[i]);  
+        let k2 = i.pow(a[i]);
         result = result * k2 as u128;
     }
     result
 }
-
-
 
 #[cfg(test)]
 mod tests {
@@ -102,5 +104,12 @@ mod tests {
         let a = get_factorization(k);
         let b = get_number(a);
         assert_eq!(k, b as u32);
+    }
+
+    #[test]
+    fn test6() {
+        let one = get_one();
+        let k = get_number(one);
+        assert_eq!(1, k as u32);
     }
 }
